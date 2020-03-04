@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace FluentVal_Task.Migrations
+namespace FluentVal_Task.Infrastructure.Presistance.Migrations
 {
     public partial class FluentValid : Migration
     {

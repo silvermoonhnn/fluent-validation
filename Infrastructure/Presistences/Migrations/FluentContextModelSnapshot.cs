@@ -3,17 +3,15 @@ using System;
 using FluentVal_Task;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace FluentVal_Task.Migrations
+namespace FluentVal_Task.Infrastructure.Presistance.Migrations
 {
     [DbContext(typeof(FluentContext))]
-    [Migration("20200304040903_FluentValid")]
-    partial class FluentValid
+    partial class FluentContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

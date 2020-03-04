@@ -1,6 +1,6 @@
 using System;
 
-namespace FluentVal_Task.Models
+namespace FluentVal_Task.Entities
 {
     public class Product
     {

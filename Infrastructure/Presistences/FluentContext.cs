@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using FluentVal_Task.Models;
+using FluentVal_Task.Entities;
 using System;
 
 namespace FluentVal_Task

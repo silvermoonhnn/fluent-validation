@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using FluentVal_Task.Models;
+using FluentVal_Task.Entities;
 using System.Linq;
 
-namespace FluentVal_Task.Controllers
+namespace FluentVal_Task.Presenter.Controllers
 {
     [ApiController]
     [Route("customer")]

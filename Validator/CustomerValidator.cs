@@ -1,6 +1,6 @@
 using System;
 using FluentValidation;
-using FluentVal_Task.Models;
+using FluentVal_Task.Entities;
 
 namespace FluentVal_Task.Validators
 {

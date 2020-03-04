@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using FluentVal_Task.Models;
+using FluentVal_Task.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
-namespace FluentVal_Task.Controllers
+namespace FluentVal_Task.Presenter.Controllers
 {
     [ApiController]
     [Route("authenticate")]
