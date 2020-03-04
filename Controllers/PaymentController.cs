@@ -24,7 +24,7 @@ namespace FluentVal_Task.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostPayment(RequestData<Payment> payment)
+        public IActionResult PostPayment(ReqPay payment)
         {
             _context.Payments.Add(payment.data.attributes);
             _context.SaveChanges();
@@ -39,7 +39,7 @@ namespace FluentVal_Task.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdatePayment(int id, RequestData<Payment> payment)
+        public IActionResult UpdatePayment(int id, ReqPay payment)
         {
             var pa = _context.Payments.First(i => i.Id == id);
             pa.NameOnCard = payment.data.attributes.NameOnCard;
@@ -57,5 +57,15 @@ namespace FluentVal_Task.Controllers
             _context.SaveChanges();
             return Ok(pa);
         }
+    }
+
+    public class ReqPay
+    {
+        public Pay data { get; set; }
+    }
+
+    public class Pay
+    {
+        public Payment attributes { get; set; }
     }
 }

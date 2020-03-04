@@ -22,7 +22,7 @@ namespace FluentVal_Task.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostCustomer(RequestData<Customer> customer)
+        public IActionResult PostCustomer(ReqCus customer)
         {
             _context.Customers.Add(customer.data.attributes);
             _context.SaveChanges();
@@ -37,7 +37,7 @@ namespace FluentVal_Task.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateCustomer(int id, RequestData<Customer> cu)
+        public IActionResult UpdateCustomer(int id, ReqCus cu)
         {
             var customer = _context.Customers.First(i => i.Id == id);
             customer.Fullname = cu.data.attributes.Fullname;
@@ -55,5 +55,15 @@ namespace FluentVal_Task.Controllers
             _context.SaveChanges();
             return Ok(customer);
         }
+    }
+
+    public class ReqCus
+    {
+        public Cus data { get; set; }
+    }
+
+    public class Cus
+    {
+        public Customer attributes { get; set; }
     }
 }

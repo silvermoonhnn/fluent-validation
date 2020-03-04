@@ -24,7 +24,7 @@ namespace FluentVal_Task.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostProduct(RequestData<Product> po)
+        public IActionResult PostProduct(ReqPro po)
         {
             _context.Products.Add(po.data.attributes);
             _context.SaveChanges();
@@ -39,7 +39,7 @@ namespace FluentVal_Task.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateProduct(int id, RequestData<Product> prod)
+        public IActionResult UpdateProduct(int id, ReqPro prod)
         {
             var po = _context.Products.First(i => i.Id == id);
             po.Name = prod.data.attributes.Name;
@@ -57,5 +57,15 @@ namespace FluentVal_Task.Controllers
             _context.SaveChanges();
             return Ok(po);
         }
+    }
+
+    public class ReqPro
+    {
+        public Pro data { get; set; }
+    }
+
+    public class Pro
+    {
+        public Product attributes { get; set; }
     }
 }
