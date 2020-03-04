@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using FluentVal_Task.Models;
-using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 
 namespace FluentVal_Task.Controllers
@@ -23,9 +22,9 @@ namespace FluentVal_Task.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostCustomer(Customer customer)
+        public IActionResult PostCustomer(RequestData<Customer> customer)
         {
-            _context.Customers.Add(customer);
+            _context.Customers.Add(customer.data.attributes);
             _context.SaveChanges();
             return Ok(customer);
         }
@@ -38,10 +37,12 @@ namespace FluentVal_Task.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateCustomer(int id)
+        public IActionResult UpdateCustomer(int id, RequestData<Customer> cu)
         {
             var customer = _context.Customers.First(i => i.Id == id);
-            customer.Fullname = "Bonnana Boat";
+            customer.Fullname = cu.data.attributes.Fullname;
+
+            _context.Customers.Update(customer);
             _context.SaveChanges();
             return Ok(customer);
         }

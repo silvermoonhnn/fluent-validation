@@ -24,9 +24,9 @@ namespace FluentVal_Task.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostMerchant(Merchant me)
+        public IActionResult PostMerchant(RequestData<Merchant> me)
         {
-            _context.Merchants.Add(me);
+            _context.Merchants.Add(me.data.attributes);
             _context.SaveChanges();
             return Ok(me);
         }
@@ -39,10 +39,12 @@ namespace FluentVal_Task.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateMerchant(int id)
+        public IActionResult UpdateMerchant(int id, RequestData<Merchant> merchant)
         {
             var me = _context.Merchants.First(i => i.Id == id);
-            me.Name = "Another Bonnana";
+            me.Name = merchant.data.attributes.Name;
+
+            _context.Merchants.Update(me);
             _context.SaveChanges();
             return Ok(me);
         }

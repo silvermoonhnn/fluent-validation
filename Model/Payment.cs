@@ -13,5 +13,7 @@ namespace FluentVal_Task.Models
         public string CreditCardNum { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+
+        public Customer customer { get; set; }
     }
 }

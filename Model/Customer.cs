@@ -4,8 +4,7 @@ namespace FluentVal_Task.Models
 {
     public enum Gender
     {
-        P = 1,
-        L = 2
+        P, L
     }
     
     public class Customer
@@ -20,6 +19,4 @@ namespace FluentVal_Task.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }
-   
-
 }

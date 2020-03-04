@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FluentVal_Task.Migrations
 {
     [DbContext(typeof(FluentContext))]
-    [Migration("20200303085158_InitialFluent")]
-    partial class InitialFluent
+    [Migration("20200304040903_FluentValid")]
+    partial class FluentValid
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -120,6 +120,8 @@ namespace FluentVal_Task.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Customer_Id");
+
                     b.ToTable("Payments");
                 });
 
@@ -147,7 +149,27 @@ namespace FluentVal_Task.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Merchant_Id");
+
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("FluentVal_Task.Models.Payment", b =>
+                {
+                    b.HasOne("FluentVal_Task.Models.Customer", "customer")
+                        .WithMany()
+                        .HasForeignKey("Customer_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FluentVal_Task.Models.Product", b =>
+                {
+                    b.HasOne("FluentVal_Task.Models.Merchant", "merchant")
+                        .WithMany()
+                        .HasForeignKey("Merchant_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -10,7 +10,7 @@ namespace FluentVal_Task.Validators
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage("name_on_card can't be empty");
             RuleFor(x => x.Address).NotEmpty().WithMessage("address can't be empty");
-            RuleFor(x => Convert.ToInt32(x.Rating)).ExclusiveBetween(1,5).WithMessage("rating is bettween 1-5");
+            RuleFor(x => Convert.ToInt32(x.Rating)).InclusiveBetween(1,5).WithMessage("rating is bettween 1-5");
         }   
     }
 }

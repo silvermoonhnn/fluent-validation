@@ -10,6 +10,8 @@ namespace FluentVal_Task.Models
         public int Price { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+
+        public Merchant merchant { get; set; }
     }
 }
 

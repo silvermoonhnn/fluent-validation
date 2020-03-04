@@ -67,9 +67,11 @@ namespace FluentVal_Task
                 app.UseDeveloperExceptionPage();
             }
 
-            // app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
