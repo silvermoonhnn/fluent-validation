@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using FluentVal_Task.Entities;
+using FluentVal_Task.Domain.Entities;
 using System;
 
-namespace FluentVal_Task
+namespace FluentVal_Task.Infrastructure.Presistance
 {
     public class FluentContext : DbContext
     {

@@ -1,13 +1,9 @@
 using System;
 
-namespace FluentVal_Task.Domain.Entities
+namespace FluentVal_Task.Application.UseCases.Customer.Models
 {
-    public enum Gender
-    {
-        P, L
-    }
-    
-    public class Customer
+    public enum Gender { P, L }
+    public class CustomerData
     {
         public int Id { get; set; }
         public string Fullname { get; set; }
@@ -16,7 +12,6 @@ namespace FluentVal_Task.Domain.Entities
         public Gender Gender { get; set; }
         public string Email { get; set; }
         public string PhoneNum { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+
     }
 }

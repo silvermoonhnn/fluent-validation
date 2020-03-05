@@ -1,8 +1,8 @@
 using System;
 
-namespace FluentVal_Task.Domain.Entities
+namespace FluentVal_Task.Application.UseCases.Payment.Models
 {
-    public class Payment
+    public class PaymentData
     {
         public int Id { get; set; }
         public int Customer_Id { get; set; }
@@ -11,9 +11,5 @@ namespace FluentVal_Task.Domain.Entities
         public string ExpYear { get; set; }
         public int PostalCode { get; set; }
         public string CreditCardNum { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-
-        public Customer customer { get; set; }
     }
 }

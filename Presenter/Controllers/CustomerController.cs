@@ -1,6 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
-using FluentVal_Task.Entities;
-using System.Linq;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using MediatR;
+using System.Threading.Tasks;
+using FluentVal_Task.Infrastructure.Presistance;
+using FluentVal_Task.Application.UseCases.Customer.Queries.GetCustomer;
+using FluentVal_Task.Application.UseCases.Customer.Queries.GetCustomers;
+using FluentVal_Task.Application.UseCases.Customer.Command.CreateCustomer;
 
 namespace FluentVal_Task.Presenter.Controllers
 {
@@ -8,62 +14,50 @@ namespace FluentVal_Task.Presenter.Controllers
     [Route("customer")]
     public class CustomerController : ControllerBase
     {
-        private readonly FluentContext _context;
+        private IMediator _mediatr;
+        // private readonly FluentContext _context;
+        protected IMediator Mediator => _mediatr ?? (_mediatr = HttpContext.RequestServices.GetService<IMediator>());
         public CustomerController(FluentContext context)
         {
-            _context = context;
+            // _context = context;
         }
 
         [HttpGet]
-        public IActionResult GetCustomer()
+        public async Task<ActionResult<GetCustomersDto>> GetCustomers()
         {
-            var cu = _context.Customers;
-            return Ok(new {message = "success retrieve data", status = true, data = cu});
+            return Ok(await Mediator.Send(new GetCustomersQuery(){}));
         }
 
         [HttpPost]
-        public IActionResult PostCustomer(ReqCus customer)
+        public async Task<ActionResult<CreateCustomerCommandDto>> PostCustomer([FromBody] CreateCustomerCommand payload)
         {
-            _context.Customers.Add(customer.data.attributes);
-            _context.SaveChanges();
-            return Ok(customer);
+            return Ok(await Mediator.Send(payload));
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCustomerById(int id)
+        public async Task<ActionResult<GetCustomerDto>> GetById(int id)
         {
-            var customer = _context.Customers.First(i => i.Id == id);
-            return Ok(customer);
+            return Ok(await Mediator.Send(new GetCustomerQuery() { Id = id}));
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateCustomer(int id, ReqCus cu)
-        {
-            var customer = _context.Customers.First(i => i.Id == id);
-            customer.Fullname = cu.data.attributes.Fullname;
+        // [HttpPut("{id}")]
+        // public IActionResult UpdateCustomer(int id, ReqCus cu)
+        // {
+        //     var customer = _context.Customers.First(i => i.Id == id);
+        //     customer.Fullname = cu.data.attributes.Fullname;
 
-            _context.Customers.Update(customer);
-            _context.SaveChanges();
-            return Ok(customer);
-        }
+        //     _context.Customers.Update(customer);
+        //     _context.SaveChanges();
+        //     return Ok(customer);
+        // }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteCustomer(int id)
-        {
-            var customer = _context.Customers.First(i => i.Id == id);
-            _context.Customers.Remove(customer);
-            _context.SaveChanges();
-            return Ok(customer);
-        }
-    }
-
-    public class ReqCus
-    {
-        public Cus data { get; set; }
-    }
-
-    public class Cus
-    {
-        public Customer attributes { get; set; }
+        // [HttpDelete("{id}")]
+        // public IActionResult DeleteCustomer(int id)
+        // {
+        //     var customer = _context.Customers.First(i => i.Id == id);
+        //     _context.Customers.Remove(customer);
+        //     _context.SaveChanges();
+        //     return Ok(customer);
+        // }
     }
 }

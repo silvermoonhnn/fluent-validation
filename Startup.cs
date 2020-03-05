@@ -1,24 +1,25 @@
+using System.Net.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentValidation.AspNetCore;
-using MediatR;
+using System.Reflection;
+using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using FluentVal_Task.Validators;
-using FluentVal_Task.Entities;
-using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using FluentVal_Task.Validators;
+using FluentVal_Task.Domain.Entities;
+using FluentVal_Task.Infrastructure.Presistance;
+using FluentVal_Task.Application.UseCases.Customer.Queries.GetCustomer;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using MediatR;
 
 namespace FluentVal_Task
 {
@@ -34,16 +35,15 @@ namespace FluentVal_Task
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<FluentContext>(op => op.UseNpgsql("Host=127.0.0.1;Username=postgres;Password=docker;Database=fluent_db"));
             services.AddControllers();
-            services.AddMvc()
-                    .AddFluentValidation();
+
+            services.AddMediatR(typeof(GetCustomerQueryHandler).GetTypeInfo().Assembly);
+            services.AddDbContext<FluentContext>(op => op.UseNpgsql("Host=127.0.0.1;Username=postgres;Password=docker;Database=fluent_db"));
             
-            services.AddTransient<IValidator<Customer>, CustomerValidator>();
-            services.AddTransient<IValidator<Product>, ProductValidator>();
-            services.AddTransient<IValidator<Payment>, PaymentValidator>();
-            services.AddTransient<IValidator<Merchant>, MerchantValidator>();
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidator<,>));
+
+            services.AddMvc()
+                    .AddFluentValidation( fv => fv.RegisterValidatorsFromAssemblyContaining<GetCustomerValidator>());
 
             services.AddAuthentication( options => {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

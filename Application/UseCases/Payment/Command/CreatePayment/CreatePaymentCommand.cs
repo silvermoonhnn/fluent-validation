@@ -1,19 +1,21 @@
 using System;
+using FluentVal_Task.Domain.Entities;
+using MediatR;
 
-namespace FluentVal_Task.Domain.Entities
+namespace FluentVal_Task.Application.UseCases.Payment.Command.CreatePayment
 {
-    public class Payment
+    public class CreatePaymentCommand : IRequest<CreatePaymentCommandDto>
     {
-        public int Id { get; set; }
+        public CreatePaymentData Data { get; set; }
+    }
+
+    public class CreatePaymentData
+    {
         public int Customer_Id { get; set; }
         public string NameOnCard { get; set; }
         public string ExpMonth { get; set; }
         public string ExpYear { get; set; }
         public int PostalCode { get; set; }
         public string CreditCardNum { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-
-        public Customer customer { get; set; }
     }
 }
