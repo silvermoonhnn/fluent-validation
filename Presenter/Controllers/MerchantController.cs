@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace FluentVal_Task.Presenter.Controllers
 {
     [ApiController]
     [Route("merchant")]
+    [Authorize]
     public class MerchantController : ControllerBase
     {
         private IMediator _mediatr;
