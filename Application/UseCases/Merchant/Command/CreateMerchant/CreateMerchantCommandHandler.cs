@@ -19,10 +19,10 @@ namespace FluentVal_Task.Application.UseCases.Merchant.Command.CreateMerchant
 
         public async Task<CreateMerchantCommandDto> Handle(CreateMerchantCommand request, CancellationToken cancellation)
         {
-            var merchant = new Domain.Entities.Merchant
+            var merchant = new Domain.Entities.MerchantEn
             {
                 Name = request.Data.Name,
-                Image = request.Data.Image,
+                Imamge = request.Data.Imamge,
                 Address = request.Data.Address,
                 Rating = request.Data.Rating
             };

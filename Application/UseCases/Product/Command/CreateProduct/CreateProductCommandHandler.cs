@@ -19,7 +19,7 @@ namespace FluentVal_Task.Application.UseCases.Product.Command.CreateProduct
 
         public async Task<CreateProductCommandDto> Handle(CreateProductCommand request, CancellationToken cancellation)
         {
-            var prod = new Domain.Entities.Product
+            var prod = new Domain.Entities.ProductEn
             {
                 Merchant_Id = request.Data.Merchant_Id,
                 Name = request.Data.Name,

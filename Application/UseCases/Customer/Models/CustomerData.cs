@@ -1,8 +1,6 @@
 using System;
-
 namespace FluentVal_Task.Application.UseCases.Customer.Models
 {
-    public enum Gender { P, L }
     public class CustomerData
     {
         public int Id { get; set; }
@@ -12,6 +10,10 @@ namespace FluentVal_Task.Application.UseCases.Customer.Models
         public Gender Gender { get; set; }
         public string Email { get; set; }
         public string PhoneNum { get; set; }
+    }
 
+    public enum Gender
+    {
+        Male, Female
     }
 }

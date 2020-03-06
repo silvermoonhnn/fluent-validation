@@ -18,7 +18,7 @@ namespace FluentVal_Task.Application.UseCases.Customer.Command.CreateCustomer
 
         public async Task<CreateCustomerCommandDto> Handle(CreateCustomerCommand request, CancellationToken cancellation)
         {
-            var customer = new Domain.Entities.Customer
+            var customer = new Domain.Entities.CustomerEn
             {
                 Username = request.Data.Username,
                 Email = request.Data.Email,

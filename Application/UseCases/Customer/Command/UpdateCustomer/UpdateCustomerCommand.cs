@@ -1,0 +1,11 @@
+
+using FluentVal_Task.Domain.Entities;
+using MediatR;
+
+namespace FluentVal_Task.Application.UseCases.Customer.Command.UpdateCustomer
+{
+    public class UpdateCustomerCommand : IRequest<UpdateCustomerCommandDto>
+    {
+        public CustomerEn Data { get; set;}
+    }
+}

@@ -2,7 +2,7 @@ using System;
 
 namespace FluentVal_Task.Domain.Entities
 {
-    public class Payment
+    public class PaymentEn
     {
         public int Id { get; set; }
         public int Customer_Id { get; set; }
@@ -14,6 +14,6 @@ namespace FluentVal_Task.Domain.Entities
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
-        public Customer customer { get; set; }
+        public CustomerEn customer { get; set; }
     }
 }

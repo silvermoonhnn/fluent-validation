@@ -8,20 +8,20 @@ namespace FluentVal_Task.Infrastructure.Presistance
     {
         public FluentContext(DbContextOptions<FluentContext> op) : base (op) {}
 
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Merchant> Merchants { get; set; }
-        public DbSet<Payment> Payments { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public DbSet<CustomerEn> Customers { get; set; }
+        public DbSet<MerchantEn> Merchants { get; set; }
+        public DbSet<PaymentEn> Payments { get; set; }
+        public DbSet<ProductEn> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder model)
         {
             model
-                .Entity<Payment>()
+                .Entity<PaymentEn>()
                 .HasOne(i => i.customer)
                 .WithMany()
                 .HasForeignKey(i => i.Customer_Id);
             model 
-                .Entity<Product>()
+                .Entity<ProductEn>()
                 .HasOne(i => i.merchant)
                 .WithMany()
                 .HasForeignKey(i => i.Merchant_Id);

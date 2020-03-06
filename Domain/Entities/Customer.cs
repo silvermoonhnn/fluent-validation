@@ -4,10 +4,10 @@ namespace FluentVal_Task.Domain.Entities
 {
     public enum Gender
     {
-        P, L
+        Male, Female   
     }
     
-    public class Customer
+    public class CustomerEn
     {
         public int Id { get; set; }
         public string Fullname { get; set; }

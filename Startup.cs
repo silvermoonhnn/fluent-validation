@@ -13,13 +13,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using FluentVal_Task.Validator;
 using FluentVal_Task.Domain.Entities;
 using FluentVal_Task.Infrastructure.Presistance;
 using FluentVal_Task.Application.UseCases.Customer.Queries.GetCustomer;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
+using FluentVal_Task.Application.Interfaces;
 
 namespace FluentVal_Task
 {

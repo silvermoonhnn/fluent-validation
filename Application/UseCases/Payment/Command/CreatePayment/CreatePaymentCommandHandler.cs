@@ -19,7 +19,7 @@ namespace FluentVal_Task.Application.UseCases.Payment.Command.CreatePayment
 
         public async Task<CreatePaymentCommandDto> Handle(CreatePaymentCommand request, CancellationToken cancellation)
         {
-            var payment = new Domain.Entities.Payment
+            var payment = new Domain.Entities.PaymentEn
             {
                 Customer_Id = request.Data.Customer_Id,
                 NameOnCard = request.Data.NameOnCard,
