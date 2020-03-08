@@ -1,5 +1,4 @@
 using FluentValidation;
-using FluentVal_Task.Application.UseCases.Merchant.Models;
 
 namespace FluentVal_Task.Application.UseCases.Merchant.Queries.GetMerchant
 {

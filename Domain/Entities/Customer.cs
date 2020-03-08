@@ -13,7 +13,8 @@ namespace FluentVal_Task.Domain.Entities
         public string Fullname { get; set; }
         public string Username { get; set; }
         public DateTime Birthdate { get; set; }
-        public Gender Gender { get; set; }
+        public Gender Sex { get; set; }
+        public string Gender { get; set; }
         public string Email { get; set; }
         public string PhoneNum { get; set; }
         public DateTime CreatedAt { get; set; }

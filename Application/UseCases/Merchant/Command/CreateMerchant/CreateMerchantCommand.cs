@@ -1,19 +1,12 @@
 using System;
+using FluentVal_Task.Application.Models.Query;
 using FluentVal_Task.Domain.Entities;
 using MediatR;
 
 namespace FluentVal_Task.Application.UseCases.Merchant.Command.CreateMerchant
 {
-    public class CreateMerchantCommand : IRequest<CreateMerchantCommandDto>
+    public class CreateMerchantCommand : RequestData<MerchantEn> , IRequest<CreateMerchantCommandDto>
     {
-        public CreateMerchantData Data { get; set; }
-    }
-
-    public class CreateMerchantData
-    {
-        public string Name { get; set; }
-        public string Imamge { get; set; }
-        public string Address { get; set; }
-        public float Rating { get; set; }
+        
     }
 }

@@ -1,5 +1,4 @@
 using FluentValidation;
-using FluentVal_Task.Application.UseCases.Customer.Models;
 
 namespace FluentVal_Task.Application.UseCases.Customer.Queries.GetCustomer
 {

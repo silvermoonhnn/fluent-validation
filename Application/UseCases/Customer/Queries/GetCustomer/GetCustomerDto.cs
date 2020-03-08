@@ -1,10 +1,10 @@
-using FluentVal_Task.Application.UseCases.Customer.Models;
 using FluentVal_Task.Application.Models.Query;
+using FluentVal_Task.Domain.Entities;
 
 namespace FluentVal_Task.Application.UseCases.Customer.Queries.GetCustomer
 {
     public class GetCustomerDto : BaseDto
     {
-        public CustomerData Data { get; set; }
+        public CustomerEn Data { get; set; }
     }
 }

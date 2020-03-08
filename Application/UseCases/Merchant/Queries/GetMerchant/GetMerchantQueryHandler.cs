@@ -1,16 +1,16 @@
 using System.Threading;
-using FluentVal_Task.Infrastructure.Presistance;
 using MediatR;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using FluentVal_Task.Application.Interfaces;
 
 namespace FluentVal_Task.Application.UseCases.Merchant.Queries.GetMerchant
 {
     public class GetMerchantQueryHandler : IRequestHandler<GetMerchantQuery, GetMerchantDto>
     {
-         private readonly FluentContext _context;
+         private readonly ICommandContext _context;
 
-         public GetMerchantQueryHandler(FluentContext context)
+         public GetMerchantQueryHandler(ICommandContext context)
          {
              _context = context;
          }
@@ -23,11 +23,7 @@ namespace FluentVal_Task.Application.UseCases.Merchant.Queries.GetMerchant
              {
                  Success = true,
                  Message = "Merchant successfully retrieved",
-                 Data = new Models.MerchantData
-                 {
-                    Name = result.Name,
-                    Address = result.Address
-                 }
+                 Data = result
              };
          }
     }

@@ -1,16 +1,16 @@
 using System.Threading;
-using FluentVal_Task.Infrastructure.Presistance;
 using MediatR;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using FluentVal_Task.Application.Interfaces;
 
 namespace FluentVal_Task.Application.UseCases.Customer.Queries.GetCustomer
 {
     public class GetCustomerQueryHandler : IRequestHandler<GetCustomerQuery, GetCustomerDto>
     {
-         private readonly FluentContext _context;
+         private readonly ICommandContext _context;
 
-         public GetCustomerQueryHandler(FluentContext context)
+         public GetCustomerQueryHandler(ICommandContext context)
          {
              _context = context;
          }
@@ -23,15 +23,8 @@ namespace FluentVal_Task.Application.UseCases.Customer.Queries.GetCustomer
              {
                  Success = true,
                  Message = "Customer successfully retrieved",
-                 Data = new Models.CustomerData
-                 {
-                    Username = result.Username,
-                    Email = result.Email,
-                 }
+                 Data = result
              };
          }
     }
-   
-
-
 }
