@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
-using FluentVal_Task.Application.UseCases.Merchant.Models;
 using FluentVal_Task.Application.Interfaces;
 
 namespace FluentVal_Task.Application.UseCases.Merchant.Queries.GetMerchants

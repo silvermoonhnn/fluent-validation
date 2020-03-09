@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using FluentVal_Task.Infrastructure.Presistance;
-using FluentVal_Task.Application.UseCases.Customer.Models;
 using FluentVal_Task.Application.Interfaces;
 
 namespace FluentVal_Task.Application.UseCases.Customer.Queries.GetCustomers
