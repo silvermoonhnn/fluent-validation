@@ -20,6 +20,12 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
 using FluentVal_Task.Application.Interfaces;
+using FluentVal_Task.Application.UseCases.Customer.Command.CreateCustomer;
+using FluentVal_Task.Application.UseCases.Customer.Command.UpdateCustomer;
+using FluentVal_Task.Application.UseCases.Merchant.Command.CreateMerchant;
+using FluentVal_Task.Application.UseCases.Payment.Command.CreatePayment;
+using FluentVal_Task.Application.UseCases.Product.Command.CreateProduct;
+
 namespace FluentVal_Task
 {
     public class Startup
@@ -35,14 +41,18 @@ namespace FluentVal_Task
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<FluentContext>(op => op.UseNpgsql("Host=127.0.0.1;Username=postgres;Password=docker;Database=fluent_db"));
 
             services.AddMediatR(typeof(GetCustomerQueryHandler).GetTypeInfo().Assembly);
-            services.AddDbContext<FluentContext>(op => op.UseNpgsql("Host=127.0.0.1;Username=postgres;Password=docker;Database=fluent_db"));
             
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidator<,>));
 
             services.AddMvc()
-                    .AddFluentValidation( fv => fv.RegisterValidatorsFromAssemblyContaining<GetCustomerValidator>());
+                    .AddFluentValidation();
+            services.AddTransient<IValidator<CreateCustomerCommand>, CreateCustomerCommandValidator>();
+            services.AddTransient<IValidator<CreateMerchantCommand>, CreateMerchantCommandValidator>();
+            services.AddTransient<IValidator<CreatePaymentCommand>, CreatePaymentCommandValidator>();
+            services.AddTransient<IValidator<CreateProductCommand>, CreateProductCommandValidator>();
 
             services.AddAuthentication( options => {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
