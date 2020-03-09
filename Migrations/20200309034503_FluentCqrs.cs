@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace FluentVal_Task.Infrastructure.Presistance.Migrations
+namespace FluentVal_Task.Migrations
 {
-    public partial class FluentValid : Migration
+    public partial class FluentCqrs : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,8 @@ namespace FluentVal_Task.Infrastructure.Presistance.Migrations
                     Fullname = table.Column<string>(nullable: true),
                     Username = table.Column<string>(nullable: true),
                     Birthdate = table.Column<DateTime>(nullable: false),
-                    Gender = table.Column<int>(nullable: false),
+                    Sex = table.Column<int>(nullable: false),
+                    Gender = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     PhoneNum = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),

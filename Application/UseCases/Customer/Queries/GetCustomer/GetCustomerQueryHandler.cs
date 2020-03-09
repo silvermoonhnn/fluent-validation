@@ -2,15 +2,15 @@ using System.Threading;
 using MediatR;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using FluentVal_Task.Application.Interfaces;
+using FluentVal_Task.Infrastructure.Presistance;
 
 namespace FluentVal_Task.Application.UseCases.Customer.Queries.GetCustomer
 {
     public class GetCustomerQueryHandler : IRequestHandler<GetCustomerQuery, GetCustomerDto>
     {
-         private readonly ICommandContext _context;
+         private readonly FluentContext _context;
 
-         public GetCustomerQueryHandler(ICommandContext context)
+         public GetCustomerQueryHandler(FluentContext context)
          {
              _context = context;
          }

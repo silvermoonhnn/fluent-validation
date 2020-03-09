@@ -1,10 +1,10 @@
-using FluentVal_Task.Application.UseCases.Product.Models;
 using FluentVal_Task.Application.Models.Query;
+using FluentVal_Task.Domain.Entities;
 
 namespace FluentVal_Task.Application.UseCases.Product.Queries.GetProduct
 {
     public class GetProductDto : BaseDto
     {
-        public ProductData Data { get; set; }
+        public ProductEn Data { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using FluentVal_Task.Application.Interfaces;
+using FluentVal_Task.Infrastructure.Presistance;
 using MediatR;
 
 
@@ -9,9 +9,9 @@ namespace FluentVal_Task.Application.UseCases.Merchant.Command.UpdateMerchant
 {
     public class UpdateMerchantCommandHandler : IRequestHandler<UpdateMerchantCommand, UpdateMerchantCommandDto>
     {
-        private readonly ICommandContext _context;
+        private readonly FluentContext _context;
         
-        public UpdateMerchantCommandHandler(ICommandContext context)
+        public UpdateMerchantCommandHandler(FluentContext context)
         {
             _context = context;
         }

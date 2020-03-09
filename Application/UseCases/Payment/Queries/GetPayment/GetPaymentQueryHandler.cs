@@ -23,14 +23,7 @@ namespace FluentVal_Task.Application.UseCases.Payment.Queries.GetPayment
              {
                  Success = true,
                  Message = "Payment successfully retrieved",
-                 Data = new Models.PaymentData
-                 {
-                    Customer_Id = result.Customer_Id,
-                    NameOnCard = result.NameOnCard,
-                    ExpMonth = result.ExpMonth,
-                    ExpYear = result.ExpYear,
-                    CreditCardNum = result.CreditCardNum
-                 }
+                 Data = result
              };
          }
     }

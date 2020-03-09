@@ -1,5 +1,4 @@
 using FluentValidation;
-using FluentVal_Task.Application.UseCases.Payment.Models;
 
 namespace FluentVal_Task.Application.UseCases.Payment.Queries.GetPayment
 {

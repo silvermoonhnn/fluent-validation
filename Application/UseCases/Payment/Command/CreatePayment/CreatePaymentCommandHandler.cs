@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
@@ -21,11 +20,11 @@ namespace FluentVal_Task.Application.UseCases.Payment.Command.CreatePayment
         {
             var payment = new Domain.Entities.PaymentEn
             {
-                Customer_Id = request.Data.Customer_Id,
-                NameOnCard = request.Data.NameOnCard,
-                ExpMonth = request.Data.ExpMonth,
-                ExpYear = request.Data.ExpYear,
-                CreditCardNum = request.Data.CreditCardNum
+                Customer_Id = request.DataD.Attributes.Customer_Id,
+                NameOnCard = request.DataD.Attributes.NameOnCard,
+                ExpMonth = request.DataD.Attributes.ExpMonth,
+                ExpYear = request.DataD.Attributes.ExpYear,
+                CreditCardNum = request.DataD.Attributes.CreditCardNum
             };
 
             _context.Payments.Add(payment);

@@ -4,15 +4,15 @@ using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using System.Threading.Tasks;
-using FluentVal_Task.Application.Interfaces;
+using FluentVal_Task.Infrastructure.Presistance;
 
 namespace FluentVal_Task.Application.UseCases.Merchant.Command.CreateMerchant
 {
     public class CreateMerchantCommandHandler : IRequestHandler<CreateMerchantCommand, CreateMerchantCommandDto>
     {
-        private readonly ICommandContext _context;
+        private readonly FluentContext _context;
 
-        public CreateMerchantCommandHandler(ICommandContext context)
+        public CreateMerchantCommandHandler(FluentContext context)
         {
             _context = context;
         }

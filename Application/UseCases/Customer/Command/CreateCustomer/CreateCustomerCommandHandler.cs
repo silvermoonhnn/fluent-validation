@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using MediatR;
 using System.Threading.Tasks;
 using FluentVal_Task.Domain.Entities;
-using FluentVal_Task.Application.Interfaces;
+using FluentVal_Task.Infrastructure.Presistance;
 
 namespace FluentVal_Task.Application.UseCases.Customer.Command.CreateCustomer
 {
     public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, CreateCustomerCommandDto>
     {
-        private readonly ICommandContext _context;
+        private readonly FluentContext _context;
 
-        public CreateCustomerCommandHandler(ICommandContext context)
+        public CreateCustomerCommandHandler(FluentContext context)
         {
             _context = context;
         }

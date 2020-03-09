@@ -4,15 +4,14 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using FluentVal_Task.Infrastructure.Presistance;
-using FluentVal_Task.Application.Interfaces;
 
 namespace FluentVal_Task.Application.UseCases.Customer.Queries.GetCustomers
 {
     public class GetCustomersQueryHandler : IRequestHandler<GetCustomersQuery, GetCustomersDto>
     {
-         private readonly ICommandContext _context;
+         private readonly FluentContext _context;
 
-         public GetCustomersQueryHandler(ICommandContext context)
+         public GetCustomersQueryHandler(FluentContext context)
          {
              _context = context;
          }

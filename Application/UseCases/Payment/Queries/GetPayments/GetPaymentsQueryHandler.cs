@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using FluentVal_Task.Infrastructure.Presistance;
-using FluentVal_Task.Application.UseCases.Payment.Models;
 
 namespace FluentVal_Task.Application.UseCases.Payment.Queries.GetPayments
 {
@@ -21,20 +20,11 @@ namespace FluentVal_Task.Application.UseCases.Payment.Queries.GetPayments
          {
             var data = await _context.Payments.ToListAsync();
 
-            var result = data.Select(i => new PaymentData
-            {
-                Customer_Id = i.Customer_Id,
-                NameOnCard = i.NameOnCard,
-                ExpMonth = i.ExpMonth,
-                ExpYear = i.ExpYear,
-                CreditCardNum = i.CreditCardNum
-            });
-
             return new GetPaymentsDto 
             {
                 Success = true,
                 Message = "Customer successfully retrieved",
-                Data = result.ToList()
+                Data = data
             };
          }
     }

@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using FluentVal_Task.Application.Interfaces;
+using FluentVal_Task.Infrastructure.Presistance;
 using MediatR;
 
 
@@ -9,9 +9,9 @@ namespace FluentVal_Task.Application.UseCases.Customer.Command.UpdateCustomer
 {
     public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, UpdateCustomerCommandDto>
     {
-        private readonly ICommandContext _context;
+        private readonly FluentContext _context;
         
-        public UpdateCustomerCommandHandler(ICommandContext context)
+        public UpdateCustomerCommandHandler(FluentContext context)
         {
             _context = context;
         }

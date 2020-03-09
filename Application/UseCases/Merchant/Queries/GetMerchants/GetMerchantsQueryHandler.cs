@@ -3,15 +3,15 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
-using FluentVal_Task.Application.Interfaces;
+using FluentVal_Task.Infrastructure.Presistance;
 
 namespace FluentVal_Task.Application.UseCases.Merchant.Queries.GetMerchants
 {
     public class GetMerchantsQueryHandler : IRequestHandler<GetMerchantsQuery, GetMerchantsDto>
     {
-         private readonly ICommandContext _context;
+         private readonly FluentContext _context;
 
-         public GetMerchantsQueryHandler(ICommandContext context)
+         public GetMerchantsQueryHandler(FluentContext context)
          {
              _context = context;
          }

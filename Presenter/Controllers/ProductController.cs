@@ -1,65 +1,58 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 using System.Threading.Tasks;
-using FluentVal_Task.Infrastructure.Presistance;
 using FluentVal_Task.Application.UseCases.Product.Queries.GetProduct;
 using FluentVal_Task.Application.UseCases.Product.Queries.GetProducts;
 using FluentVal_Task.Application.UseCases.Product.Command.CreateProduct;
+using FluentVal_Task.Application.UseCases.Product.Command.UpdateProduct;
+using FluentVal_Task.Application.UseCases.Product.Command.DeleteProduct;
 
 namespace FluentVal_Task.Presenter.Controllers
 {
     [ApiController]
     [Route("product")]
-    [Authorize]
     public class ProductController : ControllerBase
     {
         private IMediator _mediatr;
-        // private readonly FluentContext _context;
-        protected IMediator Mediator => _mediatr ?? (_mediatr = HttpContext.RequestServices.GetService<IMediator>());
-        public ProductController(FluentContext context)
+        // protected IMediator Mediator => _mediatr ?? (_mediatr = HttpContext.RequestServices.GetService<IMediator>());
+        public ProductController(IMediator mediatr)
         {
-            // _context = context;
+            _mediatr = mediatr;
         }
 
         [HttpGet]
         public async Task<ActionResult<GetProductsDto>> GetProducts()
         {
-            return Ok(await Mediator.Send(new GetProductsQuery(){}));
+            return Ok(await _mediatr.Send(new GetProductsQuery()));
         }
 
         [HttpPost]
         public async Task<ActionResult<CreateProductCommandDto>> PostProduct([FromBody] CreateProductCommand payload)
         {
-            return Ok(await Mediator.Send(payload));
+            return Ok(await _mediatr.Send(payload));
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<GetProductDto>> GetById(int id)
         {
-            return Ok(await Mediator.Send(new GetProductQuery() { Id = id}));
+            return Ok(await _mediatr.Send(new GetProductQuery(id)));
         }
 
-        // [HttpPut("{id}")]
-        // public IActionResult UpdateProduct(int id, ReqCus cu)
-        // {
-        //     var prod = _context.Products.First(i => i.Id == id);
-        //     prod.Fullname = cu.data.attributes.Fullname;
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProduct(int id, UpdateProductCommand data)
+        {
+            data.DataD.Attributes.Id = id;
 
-        //     _context.Products.Update(prod);
-        //     _context.SaveChanges();
-        //     return Ok(prod);
-        // }
+            return Ok(await _mediatr.Send(data));
+        }
 
-        // [HttpDelete("{id}")]
-        // public IActionResult DeleteProduct(int id)
-        // {
-        //     var prod = _context.Products.First(i => i.Id == id);
-        //     _context.Products.Remove(prod);
-        //     _context.SaveChanges();
-        //     return Ok(prod);
-        // }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var command = new DeleteProductCommand(id);
+            var result = await _mediatr.Send(command);
+            return result != null ? (IActionResult)Ok(new { Message = "success" }) : NotFound(new { Message = "not found" });
+        }
+        
     }
 }

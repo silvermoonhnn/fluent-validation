@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using FluentVal_Task.Infrastructure.Presistance;
-using FluentVal_Task.Application.UseCases.Product.Models;
 
 namespace FluentVal_Task.Application.UseCases.Product.Queries.GetProducts
 {
@@ -21,18 +20,11 @@ namespace FluentVal_Task.Application.UseCases.Product.Queries.GetProducts
          {
             var data = await _context.Products.ToListAsync();
 
-            var result = data.Select(i => new ProductData
-            {
-                Merchant_Id = i.Merchant_Id,
-                Name = i.Name,
-                Price = i.Price
-            });
-
             return new GetProductsDto 
             {
                 Success = true,
                 Message = "Customer successfully retrieved",
-                Data = result.ToList()
+                Data = data
             };
          }
     }

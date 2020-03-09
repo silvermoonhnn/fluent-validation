@@ -1,5 +1,4 @@
 using FluentValidation;
-using FluentVal_Task.Application.UseCases.Product.Models;
 
 namespace FluentVal_Task.Application.UseCases.Product.Queries.GetProduct
 {

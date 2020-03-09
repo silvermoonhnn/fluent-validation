@@ -20,7 +20,6 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
 using FluentVal_Task.Application.Interfaces;
-
 namespace FluentVal_Task
 {
     public class Startup

@@ -1,16 +1,16 @@
 
 using System.Threading;
 using System.Threading.Tasks;
-using FluentVal_Task.Application.Interfaces;
+using FluentVal_Task.Infrastructure.Presistance;
 using MediatR;
 
 namespace FluentVal_Task.Application.UseCases.Merchant.Command.DeleteMerchant
 {
     public class DeleteMerchantCommandHandler : IRequestHandler<DeleteMerchantCommand, DeleteMerchantCommandDto>
     {
-        private readonly ICommandContext _context;
+        private readonly FluentContext _context;
 
-        public DeleteMerchantCommandHandler(ICommandContext context)
+        public DeleteMerchantCommandHandler(FluentContext context)
         {
             _context = context;
         }

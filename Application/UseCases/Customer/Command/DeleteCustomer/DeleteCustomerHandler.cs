@@ -1,16 +1,16 @@
 
 using System.Threading;
 using System.Threading.Tasks;
-using FluentVal_Task.Application.Interfaces;
+using FluentVal_Task.Infrastructure.Presistance;
 using MediatR;
 
 namespace FluentVal_Task.Application.UseCases.Customer.Command.DeleteCustomer
 {
     public class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand, DeleteCustomerCommandDto>
     {
-        private readonly ICommandContext _context;
+        private readonly FluentContext _context;
 
-        public DeleteCustomerCommandHandler(ICommandContext context)
+        public DeleteCustomerCommandHandler(FluentContext context)
         {
             _context = context;
         }

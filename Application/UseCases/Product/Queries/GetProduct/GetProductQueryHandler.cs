@@ -1,4 +1,3 @@
-using System.Data.Common;
 using System.Threading;
 using FluentVal_Task.Infrastructure.Presistance;
 using MediatR;
@@ -23,13 +22,8 @@ namespace FluentVal_Task.Application.UseCases.Product.Queries.GetProduct
              return new GetProductDto
              {
                  Success = true,
-                 Message = "Payment successfully retrieved",
-                 Data = new Models.ProductData
-                 {
-                    Merchant_Id = result.Merchant_Id,
-                    Name = result.Name,
-                    Price = result.Price
-                 }
+                 Message = "Product successfully retrieved",
+                 Data = result
              };
          }
     }

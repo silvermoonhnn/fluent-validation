@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
@@ -21,9 +20,9 @@ namespace FluentVal_Task.Application.UseCases.Product.Command.CreateProduct
         {
             var prod = new Domain.Entities.ProductEn
             {
-                Merchant_Id = request.Data.Merchant_Id,
-                Name = request.Data.Name,
-                Price = request.Data.Price
+                Merchant_Id = request.DataD.Attributes.Merchant_Id,
+                Name = request.DataD.Attributes.Name,
+                Price = request.DataD.Attributes.Price
             };
 
             _context.Products.Add(prod);
