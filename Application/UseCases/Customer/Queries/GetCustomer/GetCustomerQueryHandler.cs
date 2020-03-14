@@ -33,7 +33,7 @@ namespace FluentVal_Task.Application.UseCases.Customer.Queries.GetCustomer
             {
                 var message = new MimeMessage();
                 message.From.Add(new MailboxAddress("Another background h", "whatisbackgroundh@gmail.com"));
-                message.To.Add(new MailboxAddress("Another backgrounf a", "whatisbackgrounda@gmail.com"));
+                message.To.Add(new MailboxAddress("Another background a", "whatisbackgrounda@gmail.com"));
                 message.Subject = "Requesting a data";
 
                 message.Body = new TextPart("plain")
