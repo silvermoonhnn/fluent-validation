@@ -13,15 +13,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using FluentVal_Task.Domain.Entities;
 using FluentVal_Task.Infrastructure.Presistance;
 using FluentVal_Task.Application.UseCases.Customer.Queries.GetCustomer;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
+using Hangfire;
+using Hangfire.PostgreSql;
 using FluentVal_Task.Application.Interfaces;
 using FluentVal_Task.Application.UseCases.Customer.Command.CreateCustomer;
-using FluentVal_Task.Application.UseCases.Customer.Command.UpdateCustomer;
 using FluentVal_Task.Application.UseCases.Merchant.Command.CreateMerchant;
 using FluentVal_Task.Application.UseCases.Payment.Command.CreatePayment;
 using FluentVal_Task.Application.UseCases.Product.Command.CreateProduct;
@@ -46,6 +46,8 @@ namespace FluentVal_Task
             services.AddMediatR(typeof(GetCustomerQueryHandler).GetTypeInfo().Assembly);
             
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidator<,>));
+
+            services.AddHangfire(confifuration => confifuration.UsePostgreSqlStorage(Configuration.GetConnectionString("HangfireConnection")));
 
             services.AddMvc()
                     .AddFluentValidation();
@@ -77,6 +79,10 @@ namespace FluentVal_Task
             }
 
             //app.UseHttpsRedirection();
+            
+            app.UseHangfireDashboard();
+            BackgroundJob.Enqueue(() => Console.WriteLine("Task Run"));
+            RecurringJob.AddOrUpdate(() => Console.WriteLine("Recurring Task"), Cron.Minutely);
 
             app.UseRouting();
 

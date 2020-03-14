@@ -23,7 +23,7 @@ namespace FluentVal_Task.Application.UseCases.Product.Queries.GetProducts
             return new GetProductsDto 
             {
                 Success = true,
-                Message = "Customer successfully retrieved",
+                Message = "Product successfully retrieved",
                 Data = data
             };
          }

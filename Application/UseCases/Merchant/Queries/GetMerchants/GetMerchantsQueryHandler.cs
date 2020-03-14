@@ -23,7 +23,7 @@ namespace FluentVal_Task.Application.UseCases.Merchant.Queries.GetMerchants
             return new GetMerchantsDto 
             {
                 Success = true,
-                Message = "Customer successfully retrieved",
+                Message = "Merchant successfully retrieved",
                 Data = data
             };
          }
